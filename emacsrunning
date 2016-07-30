@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#simple script to check if emacs process is running
+#used in zsh config to do check when a new terminal tab is opened
+#if emacs is running, then leave it as is without having to wait until the new tab can be used
+ps cax | grep emacs > /dev/null
+if [ $? -eq 0 ]; then
+  echo "Emacs is already running so not starting on top of it to avoid the wait time"
+else
+  echo "Starting Emacs"; emacs --daemon
+fi
